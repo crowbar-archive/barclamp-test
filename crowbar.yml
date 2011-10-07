@@ -20,6 +20,8 @@ barclamp:
   display: Test
   description: Test Barclamp Integrations
   version: 0
+  member:
+    - crowbar
 
 crowbar:
   layout: 1
