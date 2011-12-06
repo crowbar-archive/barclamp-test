@@ -182,7 +182,7 @@ def node_manipulation
   # GREG: test machines have roles.
 
   assertEqual(delete_json("/proposals/test_p1"), ["{}", 200], "Failed to delete proposal: test_p1", "Success: delete test_p1 proposal")
-  assertEqual(delete_json("/test_p1"), ["{}", 200], "Failed to delete active: test_p1", "Success: delete test_p1 active")
+  assertEqual(delete_json("/test_p1"), ["Failed to apply the proposal to: dtest-machine-1.dell.com ", 405], "Failed to delete active: test_p1", "Success: delete test_p1 active")
 
   # GREG: Check that machines don't have roles.
 
