@@ -1,0 +1,13 @@
+%p
+  = render :partial => "barclamp/node_selector"
+
+:javascript
+  $(document).ready(function(){
+    var constraints = { 
+      "test-multi-head": { "unique": true, "count": 1, "admin": true },
+      "test-multi-rest": { "unique": false, "count": -1 },
+      "test-single": { "unique": false, "count": 1, "admin": true }
+    };
+    node_selector($('#drag_drop'), constraints);
+  });
+
