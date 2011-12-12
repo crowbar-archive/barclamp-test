@@ -78,8 +78,8 @@ end
 
 
 def empty_db_tests
-  assertEqual(get_json("/"), [[], 200], "Get of list should be an empty list", "Success: empty list returned for /")
-  assertEqual(get_json("/proposals"), [[], 200], "Get of proposal should be an empty list",
+  assertEqual(get_json("/"), [[], 200], "Get of '#{@barclamp}' list should be an empty list", "Success: empty list returned for /")
+  assertEqual(get_json("/proposals"), [[], 200], "Get of '#{@barclamp}' proposal should be an empty list",
               "Success: empty list returned for /proposals")
   assertEqual(list()[0], "No current configurations", "CLI: Get of list should be empty", "Success: cli returned empty list for /")
   assertEqual(proposal_list()[0], "No current proposals", "CLI: Get of list should be empty",
