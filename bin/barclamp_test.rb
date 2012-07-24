@@ -97,7 +97,7 @@ def api_tests
   data = { "id" => "test_p1" }.to_json
   assertEqual(put_json("/proposals", data), ["{}", 200], "Failed to API create proposal: test_p1", "Success: create test_p1 proposal")
 
-  assertEqual(put_json("/proposals/fred", data)[1], 405, "Failed to API create with bad URL proposal: test_p1", "Success: create test_p1 proposal with bad url")
+  assertEqual(put_json("/proposals/fred", data)[1], 404, "Failed to API create with bad URL proposal: test_p1", "Success: create test_p1 proposal with bad url")
 
   assertEqualTimes("get_json(\"/proposals\")", [["test_p1"], 200], "Failed to API get proposals: test_p1", "Success: list of proposals with test_p1", 60)
 
