@@ -18,6 +18,7 @@ class TestController < BarclampController
  
   def set_service_object
     @service_object = TestService.new logger
+    @service_object.bc_name = @bc_name
   end
 
   private :set_service_object
