@@ -21,7 +21,7 @@ class TestService < ServiceObject
     @logger.debug("Test create_proposal: leaving base part")
 
     nodes = Node.all
-    nodes = nodes.select { |x| x.name ~= /^dtest/ }
+    nodes = nodes.select { |x| x.name =~ /^dtest/ }
     nodes = nodes.sort{|a, b| a.name <=> b.name}
 
     if nodes.size == 1
