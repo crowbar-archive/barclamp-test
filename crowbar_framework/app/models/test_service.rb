@@ -1,4 +1,4 @@
-# Copyright 2011, Dell 
+# Copyright 2012, Dell 
 # 
 # Licensed under the Apache License, Version 2.0 (the "License"); 
 # you may not use this file except in compliance with the License. 
@@ -15,29 +15,23 @@
 
 class TestService < ServiceObject
 
-  def initialize(thelogger)
-    @bc_name = "test"
-    @logger = thelogger
-  end
-
   def create_proposal
     @logger.debug("Test create_proposal: entering")
     base = super
     @logger.debug("Test create_proposal: leaving base part")
 
-    nodes = NodeObject.find_nodes_by_name "dtest*"
+    nodes = Node.all
+    nodes = nodes.select { |x| x.name =~ /^dtest/ }
     nodes = nodes.sort{|a, b| a.name <=> b.name}
 
     if nodes.size == 1
-      base["deployment"]["test"]["elements"] = {
-        "test-single" => [ nodes.first.name ]
-      }
+      add_role_to_instance_and_node(nodes[0].name, base.name, "test-single")
     elsif nodes.size > 1
       head = nodes.shift
-      base["deployment"]["test"]["elements"] = {
-        "test-multi-head" => [ head.name ],
-        "test-multi-rest" => nodes.map { |x| x.name }
-      }
+      add_role_to_instance_and_node(head.name, base.name, "test-multi-head")
+      nodes.each do |node|
+        add_role_to_instance_and_node(node.name, base.name, "test-multi-rest")
+      end
     end
 
     @logger.debug("Test create_proposal: exiting")
