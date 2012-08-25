@@ -14,8 +14,5 @@
 # 
 
 class TestController < BarclampController
-  def initialize
-    @service_object = TestService.new logger
-  end
 end
 
