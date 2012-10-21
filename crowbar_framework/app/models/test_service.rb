@@ -15,9 +15,9 @@
 
 class TestService < ServiceObject
 
-  def create_proposal
+  def create_proposal(name)
     @logger.debug("Test create_proposal: entering")
-    base = super
+    base = super(name)
     @logger.debug("Test create_proposal: leaving base part")
 
     nodes = Node.all
