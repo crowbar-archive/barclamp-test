@@ -20,17 +20,23 @@ class Test::AttribInstanceTest < AttribInstance
     :test
   end   
       
-  #def request=(value)
-  #end
+ def request=(value)
+    self.jig_run_id = 0 if self.jig_run_id.nil?
+    self.value_request = AttribInstance.serial_in(value)
+  end
   
-  #def request
-  #end
+  def request
+    AttribInstance.serial_out value_request
+  end
   
   # used by the API when values are set outside of Jig runs
-  #def actual=(value)
-  #end
+  def actual=(value)
+    self.jig_run_id = 0 if self.jig_run_id.nil?
+    self.value_actual = AttribInstance.serial_in(value)
+  end
   
-  #def actual
-  #end
+  def actual
+    "test:"+AttribInstance.serial_out(value_actual)
+  end
     
 end
