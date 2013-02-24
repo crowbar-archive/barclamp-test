@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-class Test::AttribInstanceTest < AttribInstance
+class BarclampTest::AttribTest < Attrib
 
   # Returns state of value of :empty, :set (by API) or :managed (by Jig)
   def state
@@ -22,21 +22,21 @@ class Test::AttribInstanceTest < AttribInstance
       
  def request=(value)
     self.jig_run_id = 0 if self.jig_run_id.nil?
-    self.value_request = AttribInstance.serial_in(value)
+    self.value_request = Attrib.serial_in(value)
   end
   
   def request
-    AttribInstance.serial_out value_request
+    Attrib.serial_out value_request
   end
   
   # used by the API when values are set outside of Jig runs
   def actual=(value)
     self.jig_run_id = 0 if self.jig_run_id.nil?
-    self.value_actual = AttribInstance.serial_in(value)
+    self.value_actual = Attrib.serial_in(value)
   end
   
   def actual
-    "test:"+AttribInstance.serial_out(value_actual)
+    "test:"+Attrib.serial_out(value_actual)
   end
     
 end

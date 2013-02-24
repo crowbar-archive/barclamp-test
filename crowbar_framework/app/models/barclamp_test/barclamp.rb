@@ -14,6 +14,6 @@
 #
 
 # This class is the fall back class for barclamps that are missing Barclamp subclasses
-class Test::Barclamp < Barclamp
+class BarclampTest::Barclamp < Barclamp
   
 end
