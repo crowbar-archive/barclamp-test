@@ -23,9 +23,10 @@ class AttribTestModelTest < ActiveSupport::TestCase
     @value = "unit test"
     @crowbar = Barclamp.find_or_create_by_name :name=>"test"
     @node = Node.find_or_create_by_name :name=>"units.test.com"
-    @attrib = AttribType.find_or_create_by_name :name=>"barclamp_subclass_test"
-    @na = @node.attrib_set @attrib, @value, nil, Test::AttribTest
+    @attrib = AttribType.add :name=>"barclamp_subclass_test"
+    @na = @node.set_attrib @attrib, @value, nil, BarclampTest::AttribTest
     assert_not_nil @na
+    assert_instance_of BarclampTest::AttribTest, @na
     assert_equal "test:"+@value, @na.value
     # Ruby 1.8 and 1.9 throws different exceptions in this case, so handle it
     # accordingly. Simplify once we remove 1.8 support.
@@ -35,14 +36,15 @@ class AttribTestModelTest < ActiveSupport::TestCase
   test "make sure that we can subclass Attrib in barclamps" do
     a = AttribType.create :name=>"got_class"
     assert_not_nil a
-    ai = BarclampTest::AttribTest.create :attrib_id=>a.id, :node_id => @node.id
+    ai = BarclampTest::AttribTest.create :attrib_type_id=>a.id, :node_id => @node.id
     assert_not_nil ai
     assert_instance_of BarclampTest::AttribTest, ai
     assert_equal "got_class", ai.attrib_type.name
+    assert_equal "got_class", ai.name
   end
 
   test "make sure that we can node attrib_set takes subclass" do
-    na = @node.attrib_set "subclass_me", "override", nil, Test::AttribTest
+    na = @node.set_attrib "subclass_me", "override", nil, BarclampTest::AttribTest
     assert_instance_of BarclampTest::AttribTest, na
     assert_equal "test:override", na.value
     assert_equal "subclass_me", na.attrib_type.name
