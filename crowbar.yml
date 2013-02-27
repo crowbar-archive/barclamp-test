@@ -24,6 +24,7 @@ barclamp:
   copyright: "Dell, Inc 2013"
   api_version: "v2"
   api_version_accepts: "v2"
+  allow_multiple_deployments: true
   member:
     - crowbar
 
