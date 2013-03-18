@@ -16,26 +16,7 @@
 class BarclampTest::Barclamp < Barclamp
 
   def create_proposal(name)
-    @logger.debug("Test create_proposal: entering")
-    base = super(name)
-    @logger.debug("Test create_proposal: leaving base part")
-
-    nodes = Node.all
-    nodes = nodes.select { |x| x.name =~ /^dtest/ }
-    nodes = nodes.sort{|a, b| a.name <=> b.name}
-
-    if nodes.size == 1
-      add_role_to_instance_and_node(nodes[0].name, base.name, "test-single")
-    elsif nodes.size > 1
-      head = nodes.shift
-      add_role_to_instance_and_node(head.name, base.name, "test-multi-head")
-      nodes.each do |node|
-        add_role_to_instance_and_node(node.name, base.name, "test-multi-rest")
-      end
-    end
-
-    @logger.debug("Test create_proposal: exiting")
-    base
+    super name
   end
 
 end
