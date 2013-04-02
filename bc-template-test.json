@@ -6,6 +6,11 @@
       "param1": "test"
     }
   },
+    "roles": {
+        "test-multi-head": { "jig": "chef" },
+        "test-multi-rest": { "jig": "chef" },
+        "test-single": { "jig": "chef" }
+    },
   "deployment": {
     "test": {
       "crowbar-revision": 0,

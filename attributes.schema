@@ -1,0 +1,13 @@
+{
+    "type": "map",
+    "required": true,
+    "mapping": {
+        "test": {
+            "type": "map",
+            "required": true,
+            "mapping": {
+                "param1": { "type": "str", "required": true }
+            }
+        }
+    }
+}
