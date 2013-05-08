@@ -107,7 +107,7 @@ def api_tests
   assertEqual(post_json("/proposals/test_p1", response[0].to_json), ["{}", 200], "Failed to edit test_p1", "Success: editting test_p1")
   
   response[0][:fred] = "bad"
-  assertEqual(post_json("/proposals/test_p1", response[0].to_json), ["key 'fred:' is undefined.\n", 400], "Failed to fail editting test_p1", "Success: failed to edit test_p1")
+  assertEqual(post_json("/proposals/test_p1", response[0].to_json), ["Failed to validate proposal: key 'fred:' is undefined.\n", 400], "Failed to fail editting test_p1", "Success: failed to edit test_p1")
 
   assertEqual(delete_json("/proposals/test_p1"), ["{}", 200], "Failed to API delete proposal: test_p1", "Success: delete test_p1 proposal")
   assertEqual(delete_json("/proposals/test_p1"), ["Error, could not delete proposal.", 404], "Failed to API delete proposal: missing test_p1", "Success: not finding to delete test_p1 proposal")
