@@ -14,11 +14,15 @@
 #
 class BarclampImportTest < ActiveRecord::Migration
   def up
-    Barclamp.import_1x 'test'
+	# create test jig (this is required first because the test barclamp uses the test)
+    BarclampTest::Jig.find_or_create_by_name(:name =>'test', :order=>9999, :active=>!Rails.env.production?, :description=>'development testing only - does not do anything') 
+    # import test barclamp
+    Barclamp.import 'test'
   end
 
   def down
     Barclamp.delete(Barclamp.find_by_name 'test')
+    Jig.delete(Jig.find_by_name 'test')
   end
   
 end
