@@ -15,9 +15,5 @@
 
 class BarclampTest::Barclamp < Barclamp
 
-  def create_proposal(name=nil)
-    super name
-  end
-
 end
 
