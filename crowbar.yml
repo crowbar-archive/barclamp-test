@@ -35,14 +35,21 @@ roles:
       - bootstrap
   - name: test-server
     jig: test
+    requires:
+      - test-admin
   - name: test-client
     jig: test
     flags:
       - implicit
+    requires:
+      - test-server
+      - test-library
   - name: test-discovery
     jig: test
     flags:
       - discovery
+    requires:
+      - test-admin
   - name: test-library
     jig: test
     flags:
