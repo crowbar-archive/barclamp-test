@@ -28,6 +28,29 @@ barclamp:
   member:
     - crowbar
 
+roles:
+  - name: test-admin
+    jig: test
+    flags:
+      - bootstrap
+  - name: test-server
+    jig: test
+  - name: test-client
+    jig: test
+    flags:
+      - implicit
+  - name: test-discovery
+    jig: test
+    flags:
+      - discovery
+  - name: test-library
+    jig: test
+    flags:
+      - library
+
+jigs:
+  - name: test
+
 crowbar:
   layout: 1.9
   order: 99
