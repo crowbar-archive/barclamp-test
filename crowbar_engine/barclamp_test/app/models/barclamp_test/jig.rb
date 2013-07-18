@@ -20,20 +20,26 @@ require 'json'
 
 class BarclampTest::Jig < Jig
 
+  def run(nr)
+    raise "Cannot call TestJig::Run on #{nr.name}" unless nr.state == NodeRole::TRANSITION
+    # Hardcode this for now
+    begin
+      %x["touch /tmp/test-jig-node-role-#{node.name}"]
+      nr.state = NodeRole::ACTIVE
+    rescue
+      nr.state = NodeRole::ERROR
+    end
+  end
 
   def create_node(node)
+    %x["touch /tmp/test-jig-node-#{node.name}"]
     Rails.logger.info("TestJig Creating node: #{node.name}")
   end
 
   def delete_node(node)
+    %x["rm /tmp/test-jig-node-#{node.name}"]
     Rails.logger.info("TestJig Deleting node: #{node.name}")    
   end
-
-  def read_node_data(node)
-    ## Return some dummy data to enable unit-tests, for now just safe default
-Rails.logger.debug "ZEHICLE #{node.name} BarclampTest::Jig.read_node_data"
-    JSON.parse("{}")
-  end   
   
 end
 
