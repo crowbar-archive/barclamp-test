@@ -24,8 +24,8 @@ class BarclampTest::Jig < Jig
     raise "Cannot call TestJig::Run on #{nr.name}" unless nr.state == NodeRole::TRANSITION
     # Hardcode this for now
     begin
-      puts "ZEHICLE test jig running #{nr.inspect}"
-      %x[touch /tmp/test-jig-node-role-#{nr.node.name}]
+      Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
+      %x[touch /tmp/test-jig-node-role-#{nr.to_s}]
       nr.state = NodeRole::ACTIVE
     rescue
       nr.state = NodeRole::ERROR
@@ -33,13 +33,11 @@ class BarclampTest::Jig < Jig
   end
 
   def create_node(node)
-    puts "ZEHICLE test jig create #{node.inspect}"
     %x[touch /tmp/test-jig-node-#{node.name}]
     Rails.logger.info("TestJig Creating node: #{node.name}")
   end
 
   def delete_node(node)
-    puts "ZEHICLE test jig delete #{node.inspect}"
     %x[rm /tmp/test-jig-node-#{node.name}]
     Rails.logger.info("TestJig Deleting node: #{node.name}")    
   end
