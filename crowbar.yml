@@ -57,6 +57,8 @@ roles:
 
 jigs:
   - name: test
+    description: 'Test jig for exercising jig and noderole operations.'
+    class: 'BarclampTest::Jig'
 
 crowbar:
   layout: 1.9
