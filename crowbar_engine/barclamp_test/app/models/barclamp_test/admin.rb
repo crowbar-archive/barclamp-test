@@ -13,7 +13,7 @@
 # limitations under the License. 
 # 
 
-class BarclampTest::Barclamp < Barclamp
+class BarclampTest::Admin < Role
 
 end
 
