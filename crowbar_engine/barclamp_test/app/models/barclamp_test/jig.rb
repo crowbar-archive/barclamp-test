@@ -24,8 +24,13 @@ class BarclampTest::Jig < Jig
     raise "Cannot call TestJig::Run on #{nr.name}" unless nr.state == NodeRole::TRANSITION
     # Hardcode this for now
     begin
-      Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
-      %x[touch /tmp/test-jig-node-role-#{nr.to_s}]
+      data = nr.data
+      if data["test"] || true
+        Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
+        %x[touch /tmp/test-jig-node-role-test-#{data["marker"] || nr.name}.txt]
+        puts "TEST JIG >> Working #(nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
+        sleep data["delay"] || 0
+      end
       nr.state = NodeRole::ACTIVE
     rescue
       nr.state = NodeRole::ERROR
