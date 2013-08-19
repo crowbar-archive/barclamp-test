@@ -1,4 +1,9 @@
-%p from the test-discovery page
-
-= render :partial => 'raw', :locals => { :data => data, :node_role => node_role }
+%dl
+  %dt= t ".delay"
+  %dd= text_field_tag :data_delay, data["delay"], :size => 5
+  %dt= t ".marker"
+  %dd= text_field_tag :data_marker, data["marker"], :size => 25
+  %dt= t ".test"
+  %dd= text_field_tag :data_test, data["test"], :size => 8
+= hidden_field_tag :dataprefix, "data_"
 
