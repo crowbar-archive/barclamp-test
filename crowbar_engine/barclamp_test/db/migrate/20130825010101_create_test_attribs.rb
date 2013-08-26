@@ -12,13 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-class BarclampImportTest < ActiveRecord::Migration
+class CreateTestAttribs < ActiveRecord::Migration
   def up
-    Barclamp.import 'test'
+    BarclampTest::Attrib.create :name=>'random', :map=>'random', :description=>'Random # created by Test Jig instrumentation'
+    BarclampTest::Attrib.create :name=>'marker', :map=>'marker', :description=>'Last touched by information created by Test Jig instrumentation'
   end
 
   def down
-    Barclamp.delete(Barclamp.find_by_name 'test')
+    BarclampTest::Attrib.delete :name=>'random'
+    BarclampTest::Attrib.delete :name=>'marker'
   end
   
 end

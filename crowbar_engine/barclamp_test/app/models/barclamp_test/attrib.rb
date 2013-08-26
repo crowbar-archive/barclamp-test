@@ -13,10 +13,19 @@
 # limitations under the License.
 #
 
-class BarclampTest::AttribTest < Attrib
+class BarclampTest::Attrib < Attrib
 
-  def actual
-    "test"
+  def value(data)
+
+    case self.map
+    when 'random'
+      data[:test][:random]
+    when 'marker'
+      data[:test][:marker]
+    else
+      nil
+    end
+
   end
     
 end
