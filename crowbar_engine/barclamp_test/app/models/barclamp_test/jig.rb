@@ -36,7 +36,7 @@ class BarclampTest::Jig < Jig
           Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
           %x[touch /tmp/test-jig-node-role-test-#{data["marker"] || nr.name}.txt]
           puts "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
-          sleep data["delay"] || 0
+          sleep data["delay"].to_i || 0
         end
         nr.state = NodeRole::ACTIVE
       rescue Exception => e
