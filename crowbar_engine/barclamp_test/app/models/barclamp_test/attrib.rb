@@ -19,11 +19,24 @@ class BarclampTest::Attrib < Attrib
 
     case self.map
     when 'random'
-      data[:test][:random]
+      data['test']['random'].to_i
     when 'marker'
-      data[:test][:marker]
+      data['test']['marker']
     else
-      nil
+      raise 'unknown map'
+    end
+
+  end
+
+  def discovery(data)
+
+    case self.map
+    when 'random'
+      { 'test'=> {'random'=>data}}
+    when 'marker'
+      { 'test'=> {'marker'=>data}}
+    else
+      raise 'unknown map'
     end
 
   end
