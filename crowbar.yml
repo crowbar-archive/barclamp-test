@@ -52,6 +52,11 @@ roles:
     jig: test
     flags:
       - library
+      - implicit
+    requires:
+      - test-admin
+  - name: test-fails
+    jig: test
 
 jigs:
   - name: test
