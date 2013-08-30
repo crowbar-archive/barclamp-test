@@ -57,6 +57,8 @@ roles:
       - test-admin
   - name: test-fails
     jig: test
+  - name: test-event
+    jig: test
 
 jigs:
   - name: test
