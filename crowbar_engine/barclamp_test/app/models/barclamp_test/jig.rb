@@ -35,6 +35,7 @@ class BarclampTest::Jig < Jig
         Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
         %x[touch /tmp/test-jig-node-role-test-#{data["marker"] || nr.name}.txt]
         puts "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
+        Rails.logger.info "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
         # we want an easy way to turn off the delay setting
         if data["test"] || true or data["test"].eql? "true"
           sleep data["delay"].to_i || 0

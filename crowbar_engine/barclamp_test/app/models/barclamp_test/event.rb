@@ -16,27 +16,27 @@
 class BarclampTest::Event < Role
 
 
-  def on_error(node_role, *args)
+  def self.on_error(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_error for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
-  def on_active(node_role, *args)
+  def self.on_active(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_active for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
-  def on_todo(node_role, *args)
+  def self.on_todo(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_todo for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
-  def on_transition(node_role, *args)
+  def self.on_transition(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_transition for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
-  def on_blocked(node_role, *args)
+  def self.on_blocked(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_blocked for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
-  def on_proposed(node_role, *args)
+  def self.on_proposed(node_role, *args)
     Rails.logger.info "TEST JIG >>>> Firing on_proposed for #{node_role.role.name} on #{node_role.node.name} <<<< GIJ TSET"
   end
 
