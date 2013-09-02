@@ -32,12 +32,15 @@ class BarclampTest::Jig < Jig
         nr.node.discovery = disco
         nr.node.save!
         # running the actions from the node role
-        if data["test"] || true
-          Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
-          %x[touch /tmp/test-jig-node-role-test-#{data["marker"] || nr.name}.txt]
-          puts "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
+        Rails.logger.info("TestJig Running node-role: #{nr.to_s}")    
+        %x[touch /tmp/test-jig-node-role-test-#{data["marker"] || nr.name}.txt]
+        puts "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
+        Rails.logger.info "TEST JIG >> Working #{nr.node.name} #{data["marker"]} & pausing for #{data["delay"]}"
+        # we want an easy way to turn off the delay setting
+        if data["test"] || true or data["test"].eql? "true"
           sleep data["delay"].to_i || 0
         end
+        raise "test-fails role always fails" if nr.name.eql? 'test-fails'
         nr.state = NodeRole::ACTIVE
       rescue Exception => e
         nr.status = e.to_s
