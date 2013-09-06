@@ -46,6 +46,7 @@ roles:
     jig: test
     flags:
       - discovery
+      - bootstrap
     requires:
       - test-admin
   - name: test-library
