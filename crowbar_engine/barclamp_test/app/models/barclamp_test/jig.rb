@@ -40,7 +40,7 @@ class BarclampTest::Jig < Jig
         if data["test"] || true or data["test"].eql? "true"
           sleep data["delay"].to_i || 0
         end
-        raise "test-fails role always fails" if nr.name.eql? 'test-fails'
+        raise "test-fails role always fails" if nr.role.name.eql? 'test-fails'
         nr.state = NodeRole::ACTIVE
       rescue Exception => e
         nr.status = e.to_s
