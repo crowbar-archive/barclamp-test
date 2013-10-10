@@ -42,6 +42,10 @@ roles:
     requires:
       - test-server
       - test-library
+  - name: test-client-client
+    jig: test
+    requires:
+      - test-client
   - name: test-discovery
     jig: test
     flags:
