@@ -20,13 +20,11 @@ require 'json'
 
 class BarclampTest::Jig < Jig
 
-  def run(nr)
+  def run(nr, data)
     raise "Cannot call TestJig::Run on #{nr.name}" unless nr.state == NodeRole::TRANSITION
 
     Node.transaction do
       begin
-        data = nr.data
-
         # create tests data
         disco = { :test=> { :random => Random.rand(1000000), :marker => data["marker"] }, data["marker"] => nr.id }
         nr.node.discovery = disco
@@ -50,6 +48,11 @@ class BarclampTest::Jig < Jig
       end
       nr.save!
     end
+  end
+
+  def stage_run(nr)
+    Rails.logger.info "BarclampTest::Jig.stage_run > '#{nr.role.name}' on '#{nr.node.name}'"
+    return nil
   end
 
   def create_node(node)
