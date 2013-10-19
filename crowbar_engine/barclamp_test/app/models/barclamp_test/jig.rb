@@ -52,7 +52,7 @@ class BarclampTest::Jig < Jig
 
   def stage_run(nr)
     Rails.logger.info "BarclampTest::Jig.stage_run > '#{nr.role.name}' on '#{nr.node.name}'"
-    return nil
+    return nr.all_my_data
   end
 
   def create_node(node)
