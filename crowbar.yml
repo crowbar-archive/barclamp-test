@@ -65,6 +65,14 @@ roles:
   - name: test-event
     jig: test
 
+attribs:
+  - name: random
+    map: 'test/random'
+    description: 'Random # created by Test Jig instrumentation'
+  - name: marker
+    map: 'test/marker'
+    description: 'Last touched by information created by Test Jig instrumentation'
+
 jigs:
   - name: test
     description: 'Test jig for exercising jig and noderole operations.'
