@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
-# Copyright 2011, Dell
+#
+# Copyright 2011-2013, Dell
+# Copyright 2013-2014, SUSE LINUX Products GmbH
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,7 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 
 require File.join(File.expand_path(File.dirname(__FILE__)), "barclamp_lib")
 @barclamp = "test"
@@ -33,11 +34,9 @@ def handle_test_exit
   @t_exit = true
 end
 
-
 @options << [ [ '--test_debug', '-t', GetoptLong::NO_ARGUMENT ], "--test_debug or -t to turn on debug of test", "handle_test_debug" ]
 @options << [ [ '--test_exit', '-e', GetoptLong::NO_ARGUMENT ], "--test_exit or -e to exit on failure", "handle_test_exit" ]
 opt_parse
-
 
 def assertHashAttribute(hash, field, expected, emessage, smessage)
   data = hash
@@ -64,7 +63,6 @@ def assertEqualTimes(valueF, expected, emessage, smessage, times)
   false
 end
 
-
 def assertEqual(value, expected, emessage, smessage)
   if value != expected
     puts "#{@testcase}: Value: #{value.inspect}  Expected: #{expected.inspect}: #{emessage}"
@@ -76,7 +74,6 @@ def assertEqual(value, expected, emessage, smessage)
   value == expected
 end
 
-
 def empty_db_tests
   assertEqual(get_json("/"), [[], 200], "Get of '#{@barclamp}' list should be an empty list", "Success: empty list returned for /")
   assertEqual(get_json("/proposals"), [[], 200], "Get of '#{@barclamp}' proposal should be an empty list",
@@ -85,7 +82,6 @@ def empty_db_tests
   assertEqual(proposal_list()[0], "No current proposals", "CLI: Get of list should be empty",
               "Success: cli returned empty list for /proposals")
 end
-
 
 #
 # This currently only does API testing
@@ -130,7 +126,6 @@ def api_tests
   empty_db_tests
 end
 
-
 def transition_machine (name, state)
   oldbc = @barclamp
   @barclamp = "crowbar"
@@ -144,7 +139,6 @@ def transition_machine (name, state)
 
   @barclamp = oldbc
 end
-
 
 # Node Manipulation tests
 def node_manipulation
@@ -217,7 +211,6 @@ def node_manipulation
   system("knife role -y delete crowbar-dtest-machine-2_dell_com")
 end
 
-
 # API Tests
 api_tests
 
@@ -225,4 +218,3 @@ api_tests
 node_manipulation
 
 exit @rc
-
