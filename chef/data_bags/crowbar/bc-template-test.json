@@ -9,6 +9,7 @@
   "deployment": {
     "test": {
       "crowbar-revision": 0,
+      "crowbar-applied": false,
       "elements": {},
       "element_order": [
         [
