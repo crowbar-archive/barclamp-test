@@ -16,12 +16,13 @@
 #
 
 barclamp:
-  name: test
-  display: Test
-  description: Test Barclamp Integrations
+  name: 'test'
+  display: 'Test'
+  description: 'Test Barclamp Integrations'
   version: 0
+  user_managed: true
   member:
-    - crowbar
+    - 'crowbar'
 
 crowbar:
   layout: 1
